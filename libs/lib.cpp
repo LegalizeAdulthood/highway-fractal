@@ -2,12 +2,14 @@
 
 #include <hwy/highway.h>
 
+#include <iostream>
 #include <vector>
 
 using namespace hwy::HWY_NAMESPACE;
 
 void compute_mandelbrot_set(int width, int height, int max_iterations, std::vector<int>& output)
 {
+    std::cout << "Compiled for " << hwy::TargetName(HWY_TARGET) << "\n";
     output.resize(width * height);
     const float x_min = -2.0f;
     const float x_max = 1.0f;
