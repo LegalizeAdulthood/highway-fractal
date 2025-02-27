@@ -22,6 +22,7 @@ void compute_mandelbrot_set(int width, int height, int max_iterations, std::vect
     for (int y = 0; y < height; ++y)
     {
         const float cy = y_min + y * y_scale;
+        const auto cy_vec = Set(d, cy);
         for (int x = 0; x < width; x += Lanes(d))
         {
             // Initialize SIMD vectors for the x coordinates
@@ -30,10 +31,10 @@ void compute_mandelbrot_set(int width, int height, int max_iterations, std::vect
             {
                 cx_vec = InsertLane(cx_vec, lane, x_min + (x + lane) * x_scale);
             }
-            const auto cy_vec = Set(d, cy);
-            auto zx_vec = Zero(d);
-            auto zy_vec = Zero(d);
-            auto iter_vec = Zero(di);
+            auto zx_vec = cx_vec;
+            auto zy_vec = cy_vec;
+            const auto one{Set(di, 1)};
+            auto iter_vec = one;
 
             for (int i = 0; i < max_iterations; ++i)
             {
@@ -47,7 +48,7 @@ void compute_mandelbrot_set(int width, int height, int max_iterations, std::vect
                     break;
                 }
 
-                iter_vec += IfThenElseZero(RebindMask(di, mask), Set(di, 1));
+                iter_vec += IfThenElseZero(RebindMask(di, mask), one);
                 const auto new_zy_vec = Set(d, 2.0f) * zx_vec * zy_vec + cy_vec;
                 zx_vec = zx2 - zy2 + cx_vec;
                 zy_vec = new_zy_vec;
