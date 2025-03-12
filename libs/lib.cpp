@@ -32,7 +32,7 @@ void compute_mandelbrot_set(int width, int height, int max_iterations, std::vect
         for (int x = 0; x < width; x += Lanes(d))
         {
             // Initialize SIMD vectors for the x coordinates
-            VecZ cx_vec = Iota(d, x) * Set(d, x_scale) + Set(d, x_min);
+            VecZ cx_vec = MulAdd(Iota(d, x), Set(d, x_scale), Set(d, x_min));
             VecZ zx_vec = cx_vec;
             VecZ zy_vec = cy_vec;
             VecI iter_vec = one;
