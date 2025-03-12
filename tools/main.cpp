@@ -15,7 +15,7 @@ int main()
     std::vector<int> output;
 
     // Compute the Mandelbrot set
-    compute_mandelbrot_set(width, height, max_iterations, output);
+    mandelbrot(width, height, max_iterations, output);
 
     // Convert the output to an image buffer
     std::vector<unsigned char> image(width * height * 3);
