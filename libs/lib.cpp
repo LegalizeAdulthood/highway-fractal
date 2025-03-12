@@ -23,6 +23,7 @@ void compute_mandelbrot_set(int width, int height, int max_iterations, std::vect
     using VecZ = decltype(Zero(d));
     using VecI = decltype(Zero(di));
     using VecMask = decltype(Zero(d) < Zero(d));
+    const VecI one{Set(di, 1)};
 
     for (int y = 0; y < height; ++y)
     {
@@ -31,14 +32,9 @@ void compute_mandelbrot_set(int width, int height, int max_iterations, std::vect
         for (int x = 0; x < width; x += Lanes(d))
         {
             // Initialize SIMD vectors for the x coordinates
-            VecZ cx_vec = Zero(d);
-            for (size_t lane = 0; lane < Lanes(d); ++lane)
-            {
-                cx_vec = InsertLane(cx_vec, lane, x_min + (x + lane) * x_scale);
-            }
+            VecZ cx_vec = Iota(d, x) * Set(d, x_scale) + Set(d, x_min);
             VecZ zx_vec = cx_vec;
             VecZ zy_vec = cy_vec;
-            const VecI one{Set(di, 1)};
             VecI iter_vec = one;
 
             for (int i = 0; i < max_iterations; ++i)
