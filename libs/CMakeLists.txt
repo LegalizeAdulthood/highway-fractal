@@ -9,5 +9,7 @@ add_library(lib
     mandelbrot_static.cpp
 )
 target_include_directories(lib PUBLIC include)
+# This is needed so that the highway foreach_target.h mechanism works on ubuntu.
+target_include_directories(lib PRIVATE .)
 target_folder(lib "Libraries")
 target_link_libraries(lib PUBLIC hwy::hwy)

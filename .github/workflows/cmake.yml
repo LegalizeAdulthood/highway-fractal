@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ windows-latest, macos-latest ] #, ubuntu-latest ]
+        os: [ windows-latest, macos-latest, ubuntu-latest ]
     runs-on: ${{matrix.os}}
     env:
       VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
