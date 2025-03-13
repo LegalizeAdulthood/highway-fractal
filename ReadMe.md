@@ -2,7 +2,7 @@
 
 # Highway Fractal
 
-Sample code for the video SIMD Programming with Highway.
+Sample code for the video [SIMD Programming with Highway](https://www.youtube.com/watch?v=R57biOOhnJM).
 
 [Utah C++ Programmers](https://meetup.com/utah-cpp-programmers)\
 [Past Topics](https://utahcpp.wordpress.com/past-meeting-topics/)\
