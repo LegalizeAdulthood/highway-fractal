@@ -36,8 +36,7 @@
     {
       "name": "default",
       "displayName": "Build with default settings",
-      "configurePreset": "default",
-      "verbose": true
+      "configurePreset": "default"
     }
   ],
   "testPresets": [
