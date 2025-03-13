@@ -7,7 +7,7 @@
 
 OIIO_NAMESPACE_USING
 
-int main()
+int main(int argc, char *argv[])
 {
     const int width = 800;
     const int height = 600;
@@ -15,7 +15,7 @@ int main()
     std::vector<int> output;
 
     // Compute the Mandelbrot set
-    mandelbrot(width, height, max_iterations, output);
+    mandelbrot(argc == 1, width, height, max_iterations, output);
 
     // Convert the output to an image buffer
     std::vector<unsigned char> image(width * height * 3);

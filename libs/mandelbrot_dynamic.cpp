@@ -10,6 +10,8 @@
 #include <iostream>
 #include <vector>
 
+HWY_BEFORE_NAMESPACE();
+
 namespace fractal
 {
 namespace HWY_NAMESPACE
@@ -71,6 +73,8 @@ static void mandelbrot_dynamic_impl(int width, int height, int max_iterations, s
 
 } // namespace HWY_NAMESPACE
 } // namespace fractal
+
+HWY_AFTER_NAMESPACE();
 
 #if HWY_ONCE
 

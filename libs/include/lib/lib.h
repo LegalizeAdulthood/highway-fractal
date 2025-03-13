@@ -2,4 +2,4 @@
 
 #include <vector>
 
-void mandelbrot(int width, int height, int max_iterations, std::vector<int>& output);
+void mandelbrot( bool use_static, int width, int height, int max_iterations, std::vector<int>& output );
